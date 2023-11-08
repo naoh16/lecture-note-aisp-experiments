@@ -3,13 +3,22 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Lecture Note for AI&SP Experiments's documentation!
-==============================================================
+Lecture Note for AI&SP Experiments: Extra documents
+===================================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
+   :caption: Contents
+   :numbered:
 
+   setup_microphone
+   report_slide
+
+.. toctree::
+   :caption: Appendix
+   :titlesonly:
+
+   レポート作成補助ツール <_static/report_tools.html#http://>
 
 
 Indices and tables

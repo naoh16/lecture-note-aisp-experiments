@@ -18,8 +18,9 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Lecture Note for AI&SP Experiments'
-copyright = '2023, Sunao Hara'
-author = 'Sunao Hara'
+project_sub = 'Extra documents'
+copyright = '2023, Sunao Hara, Okayma University'
+#author = 'Sunao Hara'
 
 # The full version, including alpha/beta/rc tags
 release = '23.1.0'
@@ -54,9 +55,31 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
-
+html_theme = 'sphinx_book_theme'
+html_theme_options = {
+    # https://sphinx-book-theme.readthedocs.io/en/latest/
+    "use_download_button": False,
+    # "home_page_in_toc": True,
+    "use_sidenotes": True,
+    "use_repository_button": True,
+    "use_source_button": False,
+    "repository_url": "https://github.com/naoh16/lecture-note-aisp-experiments",
+    "repository_branch": "master",
+    "use_issues_button": True,
+}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_extra_path = ['_static/report_tools.html']
+
+# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
+# using the given strftime format.
+html_last_updated_fmt = '%Y-%m-%d %H:%M'
+
+# -- Additional options ------------------------------------------------------
+
+display_github = True
+numfig = True
+numfig_secnum_depth = 0
+
