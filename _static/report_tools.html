@@ -1,0 +1,129 @@
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Pretty-visualization tools for report of Information Technology Experiments B</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="./css/vs.css"">
+    <style>
+        code {font-family: "Roboto Mono";}
+        .lineno {display: inline-block; width: 2em; text-align:right; color: grey;}
+    </style>
+</head>
+<body>
+<h1>Pretty-visualization tools for report of Information Technology Experiments B</h1>
+<hr>
+<h2>Source code highliter</h2>
+<section>
+    <textarea id="source_code" rows="10" style="min-height: 30%; max-height: 70%; width: 90%; border: 2px solid red;" onfocus="this.select();">function [PowX_dB, PowX] = calc_powerspec(signal, fft_len)
+    % CALC_POWERSPEC  音声データからパワースペクトルを計算する関数
+    %   PowX_dB = CALC_POWERSPEC( signal )
+    %   [PowX_dB, PowX] = CALC_POWERSPEC( signal )
+    %       signal   ... 音声データ
+    %       fft_len  ... FFT長
+    %       PowX     ... パワースペクトル
+    %       PowX_dB  ... パワースペクトル（dB単位）
+    %  NOTE:
+    %    - fft_len > length(signal) の場合，事前にゼロ詰めされる．3D-2項参照．
+
+    X = fft(signal, fft_len);
+    PowX = abs(X).^2 / length(X);
+    PowX((fft_len/2+2):end, :) = [];  % PowXの後半分-1を消す＝前半分+1を生かす
+    PowX_dB = 10 * log10(PowX);
+    
+end</textarea>
+    <p>(1) 上の赤枠テキストエリアにソースコードを張り付ける<br>
+       (2) 言語を選ぶ<br>
+       (3) Preview & Copy ボタンを押す</p>
+    <input type="button" value="Preview & Copy" onclick="convert(); copy_highlighted();"/>
+    　　※ オプション：
+        最初の行番号<input id="start_num" type="number" value="1" min="1" style="width: 4em"/>
+        ／
+        言語<select id="prettytext_mode">
+            <option value="matlab">MATLAB/Octave</option>
+            <option value="python">Python</option>
+            <option value="cpp">C/C++</option>
+        </select>
+    <h2>Highlited Text</h2>
+    <pre><div style="border: 1px solid black; min-height: 10; width: auto; height: auto; text-align: left; white-space: pre;"><code id="hilighted_code"></code></div></pre>
+    <div>注：PowerPointに張り付けると，インデントが崩れます（仕様につき修正不可/Google Slideでは維持されています）．</div>
+    <h2>Highlited Text as Image</h2>
+    <div id="prettytext_imgbox"><canvas id="prettytext_canvas"></canvas></div>
+    <p>注：画像に余分な空白がある場合は，PowerPointなどの画像トリム機能で削除する．単純に縮小をすると読みづらい．</p>
+    <div align="right"><i>Powered by <a href="https://highlightjs.org/" target="_blank">Highlight.js</a></i></div>
+</section>
+<hr>
+<h2>TeX to image (powered by Google Charts API)</h2>
+<section>
+    <textarea id="source_code2" rows="10" style="min-height: 30%; max-height: 70%; width: 90%; border: 2px solid red;" onfocus="this.select();">F_k = \frac{1}{N} \sum_{t=0}^{N-1} f_\ell e^{-j 2 \pi k \ell / N}</textarea>
+    <p>上の赤枠テキストエリアにTeXの数式を入力して，下のPreviewボタンを押してください．後で編集するために，TeXコードをスピーカーノートなどスライドのどこかに残しておくことを忘れずに．</p>
+    <input type="button" value="Preview" onclick="convert_png();"/>
+    　　※ オプション：
+        文字サイズ<input id="math_size" type="number" value="128" min="32" style="width: 4em"/>
+        ／
+        数式モード<select id="math_mode">
+            <option value="math_indisplay">ディスプレイモード（行全体の数式用）</option>
+            <option value="math_inline">インラインモード（文書内の数式用）</option>
+        </select>
+    <div style="border: 1px solid black; padding: 5px"><img id="math_img" style="min-height: 128"/></div>
+    <p>注意：利用しているAPIが deprecated となっています．ある日突然使えなくなるかもしれません．</p>
+    <p>PowerPointにCopy&Pasteで張り付けた場合は，画像右クリックの「代替テキスト」として，数式が保持されています</p>
+</section>
+
+<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
+<script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js" defer></script>
+<script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/python.min.js" defer></script>
+<script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/matlab.min.js" defer></script>
+<script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/c.min.js" defer></script>
+<script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/cpp.min.js" defer></script>
+<script src="./js/html2canvas.min.js" async></script>
+<script>
+    hljs.getLanguage('matlab').k.built_in += ' gplot figure plot subplot title legend set imagesc xlabel ylabel surf xlim ylim caxis colorbar';
+    hljs.getLanguage('matlab').k.built_in += ' pause ismember min max sort setdiff unique fft sound soundsc audiowrite audioread audiorecorder getaudiodata recordblocking hamming hann blackman gausswin';
+</script>
+<script>
+    var src = document.getElementById('source_code');
+    var dst = document.getElementById('hilighted_code');
+    var start_num_obj = document.getElementById('start_num');
+
+    function convert() {
+        let mode = document.getElementById('prettytext_mode').value;
+        let hilighted_code = hljs.highlight(mode, src.value);
+        let offset = parseInt(start_num_obj.value);
+        dst.innerHTML = "";
+        hilighted_code.value.split(/[\r\n]/).forEach((v,i) => {
+            i = i + offset;
+            var str_i = (i>=10)?i:('<span style="color:white">0</span>' + i);
+            dst.innerHTML += "<div><span class='lineno'>" + str_i + ":</span> " + v + "</div>";  
+        });
+        // Text2Img
+        html2canvas(dst, {canvas: document.getElementById('prettytext_canvas')});
+    }
+
+    function copy_highlighted() {
+        let text_range = document.createRange();
+        console.log(dst.parentElement.outerHTML)
+        text_range.selectNodeContents(dst.parentElement);
+        window.getSelection().addRange(text_range);
+        document.execCommand('Copy');
+        setTimeout(e => {
+            window.alert('ハイライトしたソースコード文字列をクリップボードにコピーしました．');
+            window.getSelection().removeAllRanges();
+        }, 1);
+    }
+
+    function convert_png() {
+        let src2 = document.getElementById('source_code2');
+        let dst2 = document.getElementById('math_img');
+        let opt1 = document.getElementById('math_mode');
+        let math_size = document.getElementById('math_size').value;
+        let src_txt = src2.value;
+        if(opt1.value=="math_indisplay") {
+            src_txt = '\\[' + src_txt + '\\]';
+        }
+        dst2.src = 'https://chart.googleapis.com/chart?cht=tx&chs='+math_size+'&chl=' + encodeURIComponent(src_txt);
+        dst2.alt = src2.value;
+    }
+</script>
+</body>
+
+</html>

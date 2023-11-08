@@ -1,0 +1,640 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="ja" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>1. ヘッドセットマイクロホンの利用 &#8212; Lecture Note for AI&amp;SP Experiments 23.1.0 ドキュメント</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'setup_microphone';</script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="2. 口頭試問（プレゼンテーション）" href="report_slide.html" />
+    <link rel="prev" title="Lecture Note for AI&amp;SP Experiments: Extra documents" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ja"/>
+    <meta name="docbuild:last-update" content="2023-11-08 20:28"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Lecture Note for AI&SP Experiments 23.1.0 ドキュメント</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. ヘッドセットマイクロホンの利用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report_slide.html">2. 口頭試問（プレゼンテーション）</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/naoh16/lecture-note-aisp-experiments" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="ソースリポジトリ"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/naoh16/lecture-note-aisp-experiments/issues/new?title=Issue%20on%20page%20%2Fsetup_microphone.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="問題を報告"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全画面モード"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ヘッドセットマイクロホンの利用</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目次 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">1.1. 要約 / Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cautions">1.2. 扱いについての注意 / Cautions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-it">1.3. Connect it!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4">1.4. デバイスの選択と音量調節</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-linux-gnome-desktop-on-cent-os">1.4.1. (a) Linux (Gnome desktop on Cent OS) の場合</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-windows-10">1.4.2. (b) Windows 10 の場合</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sm-howtouse">1.5. 装着方法と使い方の基本</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sm-final-alert">1.6. 取り扱いのための最終注意</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">1.7. Appendix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-linux">1.7.1. Appendix. Linux向けのトラブルシューティング（付録）</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="id1">
+<h1><span class="section-number">1. </span>ヘッドセットマイクロホンの利用<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">#</a></h1>
+<section id="summary">
+<span id="sm-summary"></span><h2><span class="section-number">1.1. </span>要約 / Summary<a class="headerlink" href="#summary" title="この見出しへのパーマリンク">#</a></h2>
+<p>本講義では，ヘッドセットマイクロホン（Senheiser PC310）を利用します．
+このヘッドセットマイクロホンには，コンデンサマイクロホンと呼ばれる精密電子機器が搭載されています．
+不用意な取扱いによって故障を引き起こさないよう，十分に注意しましょう．</p>
+<p><strong>マイクロホン部分の扱いについては，SP-2以降で説明します．</strong>
+<strong>今回は，単なるヘッドホンとして利用してください．</strong></p>
+<hr class="docutils" />
+</section>
+<section id="cautions">
+<span id="sm-caution"></span><h2><span class="section-number">1.2. </span>扱いについての注意 / Cautions<a class="headerlink" href="#cautions" title="この見出しへのパーマリンク">#</a></h2>
+<div class="alert alert-danger" role="alert">
+  <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+  <span class="sr-only">注意</span>
+  マイクロホンは精密電子機器です．丁寧に扱うようにしてください．<br>
+  乱暴な扱いを発見した場合，その場で回収する場合があります．
+</div><p>以下の行為は，厳禁です．やりがちな行為が，実はアウトだったりしますので，よく読んでおきましょう．</p>
+<ul class="simple">
+<li><p>端子の抜き差しの際にケーブルを引っ張る</p>
+<ul>
+<li><p>断線します．必ず，コネクタ部分を持って，抜き差ししてください．</p></li>
+</ul>
+</li>
+<li><p>ケーブル部分やマイクブーム（アーム）でヘッドセット本体を持ち上げる．</p>
+<ul>
+<li><p>断線したりブームが折れます．ヘッドバンド，あるいはハウジング部分を持って，支えてください．</p></li>
+</ul>
+</li>
+<li><p>ケーブルの上にモノを置く．</p>
+<ul>
+<li><p>断線します．</p></li>
+</ul>
+</li>
+<li><p>音量チェックのために，マイクロホン部分を叩く．</p>
+<ul>
+<li><p>コンデンサマイクロホンは，微小な振動も拾うことで，小さな音を取り込めるようにしています．</p></li>
+<li><p>一方，大きな音（＝振動）には弱いです．例えば，カラオケ用のマイクと比べれば，圧倒的に弱いです．</p></li>
+</ul>
+</li>
+<li><p>音量チェックのために，マイクロホン部分に息を吹きかける．</p>
+<ul>
+<li><p>マイクロホンは湿気に弱いです．最悪，カビます．</p></li>
+<li><p>利用時に，多少息がかかるのは仕方がありません．意図的にやらないように，ということです．</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="connect-it">
+<span id="a-3-connect-it"></span><h2><span class="section-number">1.3. </span>Connect it!<a class="headerlink" href="#connect-it" title="この見出しへのパーマリンク">#</a></h2>
+<p>PCに搭載されているオーディオボードは，あまり性能が良くないことがあります．
+本講義では，オーディオボード相当のUSBドングル（iBuffaloBSHSAU01BK）を用意しています．</p>
+<p>早速，PCにつないでみましょう．接続先を間違えないように．</p>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="_images/cable_connection.png"><img alt="_images/cable_connection.png" src="_images/cable_connection.png" style="width: 490.2px; height: 182.4px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 1 </span><span class="caption-text">配線図</span><a class="headerlink" href="#id5" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="_images/PC310_jack.png"><img alt="_images/PC310_jack.png" src="_images/PC310_jack.png" style="width: 329.09999999999997px; height: 303.3px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 2 </span><span class="caption-text">PC310の2つのミニプラグ（3.5mm; 赤：録音用，緑：再生用）</span><a class="headerlink" href="#id6" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
+<hr class="docutils" />
+</section>
+<section id="a-4">
+<span id="id2"></span><h2><span class="section-number">1.4. </span>デバイスの選択と音量調節<a class="headerlink" href="#a-4" title="この見出しへのパーマリンク">#</a></h2>
+<section id="a-linux-gnome-desktop-on-cent-os">
+<h3><span class="section-number">1.4.1. </span>(a) Linux (Gnome desktop on Cent OS) の場合<a class="headerlink" href="#a-linux-gnome-desktop-on-cent-os" title="この見出しへのパーマリンク">#</a></h3>
+<p>講義室のLinux上では，<code class="docutils literal notranslate"><span class="pre">gnome-control-center</span></code>コマンドを使って，再生・録音デバイスを選択したり，音量調節をすることができます．
+端末で，あるいは，<code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">F2</span></code>
+を押した後の入力ボックスに，以下のコマンドを入力してください．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gnome-control-center<span class="w"> </span>sound<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+<p>「再生デバイスのための音量調節」と「録音デバイスのための音量調節」が，それぞれ独立していることに注意しましょう．
+起動のたびに（あるいは，ケーブルを接続するたびに），音量調節をおこなった方が良いでしょう．</p>
+<p>まずは，デフォルトの出力デバイスと入力デバイスを選択する必要があります<a class="reference external" href="どこに音を出力するの？どこから音を録音するの？ということを，あらかじめPCに設定するということです．">^default</a>．
+「入力」タブと「出力」タブを順番に選び，以下のデバイスを選択してください．</p>
+<ul class="simple">
+<li><p><strong>出力</strong> アナログ出力 - CM108 Audio Controller</p></li>
+<li><p><strong>入力</strong> マイクロフォン - CM108 Audio Controller</p></li>
+</ul>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="_images/edu2019_volume_output.png"><img alt="_images/edu2019_volume_output.png" src="_images/edu2019_volume_output.png" style="width: 588.0px; height: 412.2px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 3 </span><span class="caption-text">gnome-control-center （サウンド[出力]）</span><a class="headerlink" href="#id7" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="_images/edu2019_volume_input.png"><img alt="_images/edu2019_volume_input.png" src="_images/edu2019_volume_input.png" style="width: 588.0px; height: 412.2px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 4 </span><span class="caption-text">gnome-control-center （サウンド[入力]）</span><a class="headerlink" href="#id8" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
+<p><strong>「出力の音量」の調節</strong></p>
+<p>普段音楽を聴く際に利用するものと同じですから，それほど問題は無いでしょう．
+ただし，音量には十分に注意するようにしてください．
+特に，<strong>録音した自分の声がほどよく聞こえるように調整した状態で音楽を聴くと極めて危険</strong>
+です．
+決して，<strong>実験以外の用途で演習室のヘッドセットを利用しない</strong>ようにしてください．</p>
+<blockquote>
+<div><p><strong>参考</strong> ：一般に流通している音楽は，超大音量になるよう，ミキシングされていることが多いです．
+（一部の界隈(?)では，「海苔」とか「海苔波形」とか呼ばれていたりします．）
+普段の音量と同程度に調整すると，皆さんが録音した声は，とても小さく聞こえることでしょう．</p>
+</div></blockquote>
+<p><strong>「入力の音量」の調節</strong></p>
+<p>ヘッドセットを装着した状態で，レベルメーターを見ながら，適当な声（あー，とかでOK）を出してみましょう．
+大きすぎず・小さすぎずな音量に調整しましょう．</p>
+<blockquote>
+<div><p>大学祭やサークル活動などで，PAを扱ったことがある人は，
+なんとなく感覚をつかんでいるかも？</p>
+</div></blockquote>
+</section>
+<section id="b-windows-10">
+<h3><span class="section-number">1.4.2. </span>(b) Windows 10 の場合<a class="headerlink" href="#b-windows-10" title="この見出しへのパーマリンク">#</a></h3>
+<p>設定画面を開くには，タスクバー上のスピーカー型のアイコンを右クリックし，「サウンドの設定を開く(E)」を選択します．
+デフォルトの出力デバイスと入力デバイスが，以下になっていることを確認してください．</p>
+<ul class="simple">
+<li><p><strong>出力</strong> スピーカー (USB PnP Sound Device)</p></li>
+<li><p><strong>入力</strong> マイクロ (USB PnP Sound Device)</p></li>
+</ul>
+<figure class="align-default" id="id9">
+<a class="reference internal image-reference" href="_images/win_sound_setting1.png"><img alt="_images/win_sound_setting1.png" src="_images/win_sound_setting1.png" style="width: 223.79999999999998px; height: 180.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 5 </span><span class="caption-text">タスクバーアイコンと右クリックメニュー</span><a class="headerlink" href="#id9" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id10">
+<a class="reference internal image-reference" href="_images/win_sound_setting2.png"><img alt="_images/win_sound_setting2.png" src="_images/win_sound_setting2.png" style="width: 301.2px; height: 478.79999999999995px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 6 </span><span class="caption-text">サウンドの設定画面</span><a class="headerlink" href="#id10" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="sm-howtouse">
+<span id="id3"></span><h2><span class="section-number">1.5. </span>装着方法と使い方の基本<a class="headerlink" href="#sm-howtouse" title="この見出しへのパーマリンク">#</a></h2>
+<p>マイクロホンの<strong>ブームが左耳側</strong>にくるように装着します．
+ブームの位置は，なるべく，口や鼻の息がかからない場所が望ましいです．</p>
+<p>PC310は，単一指向性と呼ばれる特性を持ったマイクロホンです．
+簡単に言えば， <strong>特定の方向の音を良く拾う</strong> ように設計されています．</p>
+<blockquote>
+<div><p>参考：マイク部分をよく見てみましょう．
+口に近い側だけでなく，反対側にも穴が空いています．
+この2つの取り込み口が，指向特性を作り出すポイントになります．
+詳しく知りたい人は，音響学の教科書を図書館などで読んでみてください．</p>
+</div></blockquote>
+<p>利用時には， <strong>口とマイクの距離や角度を常に一定を保つ</strong>
+ことを心がけてください．</p>
+<blockquote>
+<div><p>参考：あご先あたりや顔の横ぐらいに調整する例をよく見ます．
+鼻の穴と同じかちょっと上，ぐらいに合わせる，というのも実は良いやり方です．
+スタジオ収録のように上からぶら下げるマイクでは，よく見る設定方法です．</p>
+<p>注：持参したヘッドホン等を利用しても構いません．
+ただし，マイクを扱う際には上述のような注意を払うようにしてください．
+特に，マイクと口の距離が近すぎると距離の微少誤差による影響が大きくなってしまいますから，
+ある程度口から離して利用した方が良いでしょう．</p>
+</div></blockquote>
+<hr class="docutils" />
+</section>
+<section id="sm-final-alert">
+<span id="id4"></span><h2><span class="section-number">1.6. </span>取り扱いのための最終注意<a class="headerlink" href="#sm-final-alert" title="この見出しへのパーマリンク">#</a></h2>
+<div class="alert alert-danger" role="alert">
+  <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+  <span class="sr-only">！！注意！！</span>
+  <b>必要が無い場合は，ヘッドセットを取り外してください</b>．<br>
+  不意の大きな音の聴取による，<b>聴覚障害を引き起こす可能性</b>があります．<br>
+  <hr>
+  (1) 音を再生する場合でも，まず，ヘッドセットを外した状態で再生して，問題がなさそうなら装着して聞くようにしたほうが安全です．<br>
+  (2) オーディオプラグを抜き挿しする際も，油断しないように．ヘッドセットを外してから，抜き挿ししましょう．<br>
+  <hr>
+  　万が一，大音量の音を聞いてしまい，かつ，耳鳴りがやまないなどを自覚した場合は，すぐに実験を中断して，
+  保健管理センターか，かかりつけの耳鼻科の診断を受けに行ってください．
+</div></section>
+<hr class="docutils" />
+<section id="appendix">
+<h2><span class="section-number">1.7. </span>Appendix<a class="headerlink" href="#appendix" title="この見出しへのパーマリンク">#</a></h2>
+<p>以下は，補足説明のための付録・参考資料です．</p>
+<section id="appendix-linux">
+<span id="sm-appendix"></span><h3><span class="section-number">1.7.1. </span>Appendix. Linux向けのトラブルシューティング（付録）<a class="headerlink" href="#appendix-linux" title="この見出しへのパーマリンク">#</a></h3>
+<ul class="simple">
+<li><p>違うUSBのポートに挿してみる．</p>
+<ul>
+<li><p>前面がだめなら，背面のポートを試してみる．</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alsamixer</span></code> で，CM108 Audio Controllerというデバイスの存在を確認する．</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">alsamixer</span></code> では， <code class="docutils literal notranslate"><span class="pre">Fn+6</span></code> キーなどで，メニューを切り替えられる．</p></li>
+<li><p>デバイスを有効にする必要がある？</p></li>
+</ul>
+</li>
+<li><p>最終手段</p>
+<ul>
+<li><p>USBデバイスなしで，PCに直接つなぐ．</p></li>
+<li><p>赤と緑の差し口を間違えないように．</p></li>
+</ul>
+</li>
+<li><p>認識されているか確認する</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">dmesg</span></code>コマンドを実行して，それらしいUSBデバイスが，正しく検出されているか，確認する．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">/proc/asound/modules</span></code>を実行して，<code class="docutils literal notranslate"><span class="pre">usb_xxxx</span></code>が見えているか，確認する．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">^snd</span></code>を実行して，<code class="docutils literal notranslate"><span class="pre">snd_usb_audio</span></code>がロードされているか，確認する．</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">前へ</p>
+        <p class="prev-next-title">Lecture Note for AI&amp;SP Experiments: Extra documents</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="report_slide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">次へ</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>口頭試問（プレゼンテーション）</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目次
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">1.1. 要約 / Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cautions">1.2. 扱いについての注意 / Cautions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-it">1.3. Connect it!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4">1.4. デバイスの選択と音量調節</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-linux-gnome-desktop-on-cent-os">1.4.1. (a) Linux (Gnome desktop on Cent OS) の場合</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-windows-10">1.4.2. (b) Windows 10 の場合</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sm-howtouse">1.5. 装着方法と使い方の基本</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sm-final-alert">1.6. 取り扱いのための最終注意</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">1.7. Appendix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-linux">1.7.1. Appendix. Linux向けのトラブルシューティング（付録）</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, Sunao Hara, Okayma University.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  最終更新: 2023-11-08 20:28
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
