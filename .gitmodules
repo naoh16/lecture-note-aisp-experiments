@@ -1,0 +1,4 @@
+[submodule "_build/html"]
+	path = _build/html
+	url = git@github.com:naoh16/lecture-note-aisp-experiments.git
+	branch = gh-pages
