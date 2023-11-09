@@ -12,12 +12,13 @@ Lecture Note for AI&SP Experiments: Extra documents
    :numbered:
 
    setup_microphone
-   report_slide
+   record_audacity
 
 .. toctree::
-   :caption: Appendix
+   :caption: Report, etc.
    :titlesonly:
 
+   report_slide
    レポート作成補助ツール <_static/report_tools.html#http://>
 
 
