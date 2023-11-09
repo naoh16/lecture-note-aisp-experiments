@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>2. Audacity を利用したじゃんけん6音声の録音 &#8212; Lecture Note for AI&amp;SP Experiments 23.2.0 ドキュメント</title>
+    <title>2. Audacity を利用したじゃんけん6音声の録音 &#8212; Lecture Note for AI&amp;SP Experiments 23.2.1 ドキュメント</title>
   
   
   
@@ -49,7 +49,7 @@
     <link rel="prev" title="1. ヘッドセットマイクロホンの利用" href="setup_microphone.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="ja"/>
-    <meta name="docbuild:last-update" content="2023-11-09 19:39"/>
+    <meta name="docbuild:last-update" content="2023-11-09 20:28"/>
   </head>
   
   
@@ -129,7 +129,7 @@
   
   
   
-    <p class="title logo__title">Lecture Note for AI&SP Experiments 23.2.0 ドキュメント</p>
+    <p class="title logo__title">Lecture Note for AI&SP Experiments 23.2.1 ドキュメント</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -493,6 +493,9 @@ document.write(`
 <sup>5</sup></span>
 
 </label><input type='checkbox' id='sidenote-role-5' name='sidenote-role-5' class='margin-toggle'><span class="sidenote"><sup>5</sup>演習室環境以外では <code class="docutils literal notranslate"><span class="pre">soxi</span></code> コマンドが存在しないでしょう．Ubuntu/WSLなら，<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">sox</span></code> でインストールできます．</span>．</p>
+<p>収録環境によっては，256044 byte などになっているかもしれません．
+そのような場合でも，<code class="docutils literal notranslate"><span class="pre">soxi</span></code> の出力で 1 ch, 16 bit, 12800 sample が
+確認できていれば，おそらく問題ありません．</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/jikkenB/wav
 
 <span class="c1"># 以下，実行例</span>
@@ -647,7 +650,7 @@ Moodleのファイル置き場にバックアップしておきたいならば�
   
   <div class="footer-item">
     <p class="last-updated">
-  最終更新: 2023-11-09 19:39
+  最終更新: 2023-11-09 20:28
   <br/>
 </p>
   </div>
