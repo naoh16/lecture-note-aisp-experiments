@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="ja" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>2. Audacity を利用したじゃんけん6音声の録音 &#8212; Lecture Note for AI&amp;SP Experiments 23.2.0 ドキュメント</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'record_audacity';</script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="プレゼンテーション" href="report_slide.html" />
+    <link rel="prev" title="1. ヘッドセットマイクロホンの利用" href="setup_microphone.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ja"/>
+    <meta name="docbuild:last-update" content="2023-11-09 19:39"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Lecture Note for AI&SP Experiments 23.2.0 ドキュメント</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setup_microphone.html">1. ヘッドセットマイクロホンの利用</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Audacity を利用したじゃんけん6音声の録音</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Report, etc.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="report_slide.html">プレゼンテーション</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/naoh16/lecture-note-aisp-experiments" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="ソースリポジトリ"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/naoh16/lecture-note-aisp-experiments/issues/new?title=Issue%20on%20page%20%2Frecord_audacity.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="問題を報告"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全画面モード"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Audacity を利用したじゃんけん6音声の録音</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目次 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.1. はじめに</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2. 起動と下準備</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3. 録音</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audacity">2.4. Audacity の設定の再確認</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.5. 音声区間のラベル付け</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wav-export">2.6. WAVファイルへの export</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2.7. 最後に</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disclaimer">2.8. DISCLAIMER</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="audacity-6">
+<h1><span class="section-number">2. </span>Audacity を利用したじゃんけん6音声の録音<a class="headerlink" href="#audacity-6" title="この見出しへのパーマリンク">#</a></h1>
+<section id="id1">
+<h2><span class="section-number">2.1. </span>はじめに<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">#</a></h2>
+<p>かいつまんで説明します．</p>
+<p>本実験では Audacity を用いて，学習用の音声ファイルを収録する．
+収録条件は以下の通り．</p>
+<ul class="simple">
+<li><p>音声ファイルの形式</p>
+<ul>
+<li><p>フォーマット: WAV形式</p></li>
+<li><p>エンコード: PCM, 16-bit signed integer, Little Endian</p></li>
+</ul>
+</li>
+<li><p>音声データの諸元</p>
+<ul>
+<li><p>チャネル数: 1 ch (モノラル)</p></li>
+<li><p>サンプリングレート: 16,000 Hz</p></li>
+<li><p>音声長: 0.8 sec (12,800 sample)　※1音声あたりの長さ</p></li>
+</ul>
+</li>
+</ul>
+<p>※演習室環境では，やや古い Audacity 2.3.3 を利用します．
+最新版 (version 3.3.3; 2023.10.19現在) では，一部UIの表記が変わっているかもしれません．
+自分のPCにインストールして自習するという人は，適当に読み替えながら，取り組んでください．</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">2.2. </span>起動と下準備<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">#</a></h2>
+<ul class="simple">
+<li><p>Audacity を起動する．</p>
+<ul>
+<li><p>録音デバイス（マイク型アイコン付近）を確認する．</p>
+<ul>
+<li><p>演習室なら ALSA を選ぶ．</p></li>
+<li><p>自習用PCが Windows 10/11 なら Windows WASAPI が良い．</p></li>
+<li><p>macOSは，なんかいい塩梅のデバイスが選ばれていたはずです．詳しくは知りません・・・</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>録音デバイスの隣あたりに、チャンネル数の設定があるので、「モノラル 1ch」を選ぶ</p></li>
+<li><p>画面左下，プロジェクトのサンプリング周波数を 16,000 Hz にする．</p></li>
+</ul>
+<p>まずはここまで．</p>
+<p>いったん，プロジェクトとして「保存」しましょう．拡張子は <code class="docutils literal notranslate"><span class="pre">.aup</span></code> です．
+例えば，<code class="docutils literal notranslate"><span class="pre">janken.aup</span></code> など，思い出しやすいファイル名をつけておきましょう．</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">2.3. </span>録音<a class="headerlink" href="#id3" title="この見出しへのパーマリンク">#</a></h2>
+<p>さっそく，録音をしましょう．</p>
+<ul class="simple">
+<li><p>赤い丸で録音開始！ じゃんけんの音声を 6 つ録音しよう．ポイントは 4 つ．</p>
+<ul>
+<li><p>各音声（ぐー，など）が 0.8 秒ぐらいの長さに収まるようにする</p></li>
+<li><p>各音声の間に 1 秒ぐらいの無音を確保しておくと，後でラベル区間をつけやすい．</p></li>
+<li><p>最終音の後の無音も忘れずに．（話し終わって，一呼吸おいてから停止しよう．）</p></li>
+<li><p>振幅が 0.4 を全く超えていないのであれば，さすがに声が小さすぎる．</p></li>
+</ul>
+</li>
+</ul>
+<p><em>トラブルシューティング</em></p>
+<ul>
+<li><p>録音に失敗した場合</p>
+<ul>
+<li><p>録音と再生 --&gt; 録音 --&gt; パンチ＆ロール（Shift + D）が便利です．</p></li>
+<li><p>Shift + D でカーソル位置の５秒前から，音が再生され，カーソル位置にたどり着くと録音される．</p></li>
+<span class="sidenote"><sup>1</sup>パンチイン＆アウトは，録音現場で使われることの多い（？）機能で，カーソル位置に挿入するような操作です．</span><li><p>残念ながら，パンチイン＆アウト <label for='sidenote-role-1' class='margin-toggle'><span id="id4">
+<sup>1</sup></span>
+
+</label><input type='checkbox' id='sidenote-role-1' name='sidenote-role-1' class='margin-toggle'><span class="sidenote d-n"><sup>1</sup>パンチイン＆アウトは，録音現場で使われることの多い（？）機能で，カーソル位置に挿入するような操作です．</span> ではありません．カーソルから後ろの音がすべて消えます．要注意！</p></li>
+</ul>
+</li>
+<li><p>ステレオ（2 ch）で録ってしまった場合</p>
+<ul class="simple">
+<li><p>『トラック --&gt; ミックス --&gt; ステレオからモノラルへ』でモノラル(1 ch)化することができます。</p></li>
+</ul>
+</li>
+</ul>
+<p>以上です．</p>
+<p>Audacityの中で，6音声を1つの長い音声波形として収録してください．</p>
+</section>
+<section id="audacity">
+<h2><span class="section-number">2.4. </span>Audacity の設定の再確認<a class="headerlink" href="#audacity" title="この見出しへのパーマリンク">#</a></h2>
+<p>収録を終えたら，次の作業に移る前に，設定項目を再確認しましょう．</p>
+<p>画面下部のUIで，以下の変更・確認をしてから作業しましょう．</p>
+<ul class="simple">
+<li><p>「音声位置」を「サンプル」単位に変更</p></li>
+<li><p>隣のセレクトボックスで「選択範囲の開始点と長さ」を選択　※「長さ」を見えるようにすることが重要です！！</p></li>
+<li><p>（念のため）プロジェクトのサンプリング周波数 (Hz) が 16,000 になっていることを確認</p></li>
+</ul>
+<figure class="align-default" id="id11">
+<a class="reference internal image-reference" href="_images/audacity_bottom_setting.png"><img alt="_images/audacity_bottom_setting.png" src="_images/audacity_bottom_setting.png" style="width: 922.0px; height: 83.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 7 </span><span class="caption-text">Audacity 下部のツールバーによる設定</span><a class="headerlink" href="#id11" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id5">
+<h2><span class="section-number">2.5. </span>音声区間のラベル付け<a class="headerlink" href="#id5" title="この見出しへのパーマリンク">#</a></h2>
+<p>収録と設定を終えたら，6音声に対して，音声区間のラベル付けをします．</p>
+<p>やりたい作業は，こんな感じです．</p>
+<ul>
+<li><p>範囲選択機能を使って，ぴったり <strong>0.8 秒 (12,800 sample)</strong> を選択する． ※英語UIなら sample，日本語UIならサンプルという表記</p>
+<ul>
+<li><p>マウスドラッグで，ざっくりと１つ分の発声区間を範囲指定</p></li>
+<span class="sidenote"><sup>3</sup>「Shift + 矢印キー」や「Ctrl + Shift + 矢印キー」で，選択範囲を拡大・縮小できるのですが・・・この方法では，ぴったりの数字にはできません．</span><li><p>信号長がおよそ12,800 サンプルに，かつ，音声波形がおよそ中心に位置するよう，選択範囲を拡大縮小します <label for='sidenote-role-3' class='margin-toggle'><span id="id6">
+<sup>3</sup></span>
+
+</label><input type='checkbox' id='sidenote-role-3' name='sidenote-role-3' class='margin-toggle'><span class="sidenote d-n"><sup>3</sup>「Shift + 矢印キー」や「Ctrl + Shift + 矢印キー」で，選択範囲を拡大・縮小できるのですが・・・この方法では，ぴったりの数字にはできません．</span>．</p>
+<ul class="simple">
+<li><p>マウスで選択範囲の境界線を掴むイメージで，選択範囲の拡大縮小ができます．</p></li>
+<li><p>12,800 ± 1,000 サンプルぐらいを目安に動かしてください．後で微調整するので，アバウトでOKです．</p></li>
+</ul>
+</li>
+<li><p>最終調整として，「選択範囲の開始点と長さ」で，右側の数値（つまり，長さの指定）で，12,800 点を指定する．</p>
+<ul>
+<li><p>English UI では「<strong>12,800 sample</strong>」です．</p></li>
+<span class="sidenote"><sup>2</sup>間違ってはいないが，プログラマならば，もやもやする翻訳ですよね．12.8k = 12,800 です．</span><li><p>Japanese UI では「<strong>1万2800サンプル</strong>」です <label for='sidenote-role-2' class='margin-toggle'><span id="id7">
+<sup>2</sup></span>
+
+</label><input type='checkbox' id='sidenote-role-2' name='sidenote-role-2' class='margin-toggle'><span class="sidenote d-n"><sup>2</sup>間違ってはいないが，プログラマならば，もやもやする翻訳ですよね．12.8k = 12,800 です．</span>．</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>編集 --&gt; ラベル --&gt; 選択範囲にラベルを付ける (Ctrl + B)．</p>
+<ul>
+<li><p>わかりにくいが，下図の丸を付けた個所がテキストの入力エリア</p>
+<figure class="align-default" id="id12">
+<a class="reference internal image-reference" href="_images/audacity_labeling_1.png"><img alt="_images/audacity_labeling_1.png" src="_images/audacity_labeling_1.png" style="width: 489.6px; height: 369.6px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 8 </span><span class="caption-text">Audacity ラベル入力の図(1)</span><a class="headerlink" href="#id12" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>例えば，<code class="docutils literal notranslate"><span class="pre">Jan_Goo_1</span></code> などの文字にしておく．（ジャンケンのグーの1回目という意味）</p>
+<ul class="simple">
+<li><p>このラベル文字列は，後でwavファイル名にも使われる．</p></li>
+<li><p>念のため，繰り返します．1音声は 12,800 sample にしましょう．</p></li>
+</ul>
+<figure class="align-default" id="id13">
+<a class="reference internal image-reference" href="_images/audacity_labeling_2.png"><img alt="_images/audacity_labeling_2.png" src="_images/audacity_labeling_2.png" style="width: 737.6px; height: 350.40000000000003px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 9 </span><span class="caption-text">Audacity ラベル入力の図(2)</span><a class="headerlink" href="#id13" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
+</li>
+</ul>
+</li>
+<li><p>以上を6音声に対して繰り返す．</p>
+<ul>
+<li><p>Jan_Goo_1, Jan_Goo_2, Jan_Chk_1, Jan_Chk_2, Jan_Par_1, Jan_Par_2</p>
+<figure class="align-default" id="id14">
+<a class="reference internal image-reference" href="_images/audacity_labeling_3.png"><img alt="_images/audacity_labeling_3.png" src="_images/audacity_labeling_3.png" style="width: 1100.0px; height: 262.40000000000003px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 10 </span><span class="caption-text">Audacity ラベル入力が終わった状態の例</span><a class="headerlink" href="#id14" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>ここまで終えたら，忘れずに <strong>プロジェクトの（上書き）保存</strong> をしておきましょう．</p>
+</section>
+<section id="wav-export">
+<h2><span class="section-number">2.6. </span>WAVファイルへの export<a class="headerlink" href="#wav-export" title="この見出しへのパーマリンク">#</a></h2>
+<p>6音声すべてにラベル付けを終えたら，最後は WAV ファイルの export です．</p>
+<ul class="simple">
+<li><p>ファイル --&gt; 書き出し --&gt; 複数ファイルの書き出し</p>
+<ul>
+<li><p>フォルダを指定する　※例えば，~/jikkenB/wav など．~は自分のホームディレクトリ（/home/users/ecs/(学生番号)/）のこと．</p></li>
+<li><p>ファイル分離基準は「ラベル」</p></li>
+<li><p>ファイルの命名は「ラベル/トラック名の利用」</p></li>
+</ul>
+</li>
+</ul>
+<p>これで，指定したフォルダにファイルが作られているはずです．</p>
+<p>「端末 (<code class="docutils literal notranslate"><span class="pre">gnome-terminal</span></code>) <label for='sidenote-role-4' class='margin-toggle'><span id="id8">
+<sup>4</sup></span>
+
+</label><input type='checkbox' id='sidenote-role-4' name='sidenote-role-4' class='margin-toggle'><span class="sidenote"><sup>4</sup>Jupyterのコンソールではありません．Linuxの端末アプリ（実態は，<code class="docutils literal notranslate"><span class="pre">gnome-terminal</span></code> コマンド）です．</span>」 を開き，確かめてみましょう．
+(<code class="docutils literal notranslate"><span class="pre">$</span></code> より前はプロンプトです．)</p>
+<p>少なくともファイルサイズが同じことを確認しておいてください <label for='sidenote-role-5' class='margin-toggle'><span id="id9">
+<sup>5</sup></span>
+
+</label><input type='checkbox' id='sidenote-role-5' name='sidenote-role-5' class='margin-toggle'><span class="sidenote"><sup>5</sup>演習室環境以外では <code class="docutils literal notranslate"><span class="pre">soxi</span></code> コマンドが存在しないでしょう．Ubuntu/WSLなら，<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">sox</span></code> でインストールできます．</span>．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/jikkenB/wav
+
+<span class="c1"># 以下，実行例</span>
+<span class="o">[</span>hara@D001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/jikkenB/wav
+合計<span class="w"> </span><span class="m">204</span>
+drwxr-x---<span class="w">  </span><span class="m">3</span><span class="w"> </span>hara<span class="w"> </span>staff<span class="w">  </span><span class="m">4096</span><span class="w"> </span>10月<span class="w"> </span><span class="m">11</span><span class="w">  </span><span class="m">2023</span><span class="w"> </span>.
+drwxr-x---<span class="w"> </span><span class="m">13</span><span class="w"> </span>hara<span class="w"> </span>staff<span class="w">  </span><span class="m">4096</span><span class="w"> </span>10月<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">14</span>:05<span class="w"> </span>..
+-rw-r-----<span class="w">  </span><span class="m">1</span><span class="w"> </span>hara<span class="w"> </span>staff<span class="w"> </span><span class="m">25736</span><span class="w"> </span>10月<span class="w"> </span><span class="m">11</span><span class="w">  </span><span class="m">2023</span><span class="w"> </span>Jan_Chk_1.wav
+-rw-r-----<span class="w">  </span><span class="m">1</span><span class="w"> </span>hara<span class="w"> </span>staff<span class="w"> </span><span class="m">25736</span><span class="w"> </span>10月<span class="w"> </span><span class="m">11</span><span class="w">  </span><span class="m">2023</span><span class="w"> </span>Jan_Chk_2.wav
+-rw-r-----<span class="w">  </span><span class="m">1</span><span class="w"> </span>hara<span class="w"> </span>staff<span class="w"> </span><span class="m">25736</span><span class="w"> </span>10月<span class="w"> </span><span class="m">11</span><span class="w">  </span><span class="m">2023</span><span class="w"> </span>Jan_Goo_1.wav
+-rw-r-----<span class="w">  </span><span class="m">1</span><span class="w"> </span>hara<span class="w"> </span>staff<span class="w"> </span><span class="m">25736</span><span class="w"> </span>10月<span class="w"> </span><span class="m">11</span><span class="w">  </span><span class="m">2023</span><span class="w"> </span>Jan_Goo_2.wav
+-rw-r-----<span class="w">  </span><span class="m">1</span><span class="w"> </span>hara<span class="w"> </span>staff<span class="w"> </span><span class="m">25736</span><span class="w"> </span>10月<span class="w"> </span><span class="m">11</span><span class="w">  </span><span class="m">2023</span><span class="w"> </span>Jan_Par_1.wav
+-rw-r-----<span class="w">  </span><span class="m">1</span><span class="w"> </span>hara<span class="w"> </span>staff<span class="w"> </span><span class="m">25736</span><span class="w"> </span>10月<span class="w"> </span><span class="m">11</span><span class="w">  </span><span class="m">2023</span><span class="w"> </span>Jan_Par_2.wav
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>soxi<span class="w"> </span>~/jikkenB/wav/Jan_Goo_1.wav
+
+<span class="c1"># 以下，実行例</span>
+<span class="o">[</span>hara@D001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>soxi<span class="w"> </span>~/jikkenB/wav/Jan_Goo_1.wav
+
+Input<span class="w"> </span>File<span class="w">     </span>:<span class="w"> </span><span class="s1">&#39;/home/users/ecs/hara/jikkenB/wav/Jan_Goo_1.wav&#39;</span>
+Channels<span class="w">       </span>:<span class="w"> </span><span class="m">1</span>
+Sample<span class="w"> </span>Rate<span class="w">    </span>:<span class="w"> </span><span class="m">16000</span>
+Precision<span class="w">      </span>:<span class="w"> </span><span class="m">16</span>-bit
+Duration<span class="w">       </span>:<span class="w"> </span><span class="m">00</span>:00:00.80<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12800</span><span class="w"> </span>samples<span class="w"> </span>~<span class="w"> </span><span class="m">60</span><span class="w"> </span>CDDA<span class="w"> </span>sectors
+File<span class="w"> </span>Size<span class="w">      </span>:<span class="w"> </span><span class="m">25</span>.7k
+Bit<span class="w"> </span>Rate<span class="w">       </span>:<span class="w"> </span>257k
+Sample<span class="w"> </span>Encoding:<span class="w"> </span><span class="m">16</span>-bit<span class="w"> </span>Signed<span class="w"> </span>Integer<span class="w"> </span>PCM
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h2><span class="section-number">2.7. </span>最後に<a class="headerlink" href="#id10" title="この見出しへのパーマリンク">#</a></h2>
+<p>最後に，もう一度 Audacity のプロジェクト(<code class="docutils literal notranslate"><span class="pre">janken.aup</span></code> 等)を保存しておくとよいでしょう．</p>
+<p>後でラベル修正だけする，みたいなことが簡単にできます．</p>
+<ul>
+<li><p>参考：</p>
+<ul>
+<li><p>この方法で保存される aup ファイルは，音声データそのものではない．
+例えば，<code class="docutils literal notranslate"><span class="pre">janken.aup</span></code> というファイル名で保存すると，同じディレクトリに，
+<code class="docutils literal notranslate"><span class="pre">janken_data</span></code> というディレクトリが作られる．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">janken_data</span></code> の中に，元の音声データ(<code class="docutils literal notranslate"><span class="pre">.au</span></code>)を含め，様々な情報が格納される．
+そのため，自宅環境に移すためにアーカイブファイルにまとめておきたい，とか，
+Moodleのファイル置き場にバックアップしておきたいならば：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zip<span class="w"> </span>-r<span class="w"> </span>janken.zip<span class="w"> </span>janken.aup<span class="w"> </span>janken_data/
+</pre></div>
+</div>
+<p>で，<code class="docutils literal notranslate"><span class="pre">janken.zip</span></code> のようなアーカイブファイルにまとめておくとよい．
+なお，zipファイルの中身を確認するなら：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip<span class="w"> </span>-l<span class="w"> </span>janken.zip
+</pre></div>
+</div>
+<p>であり，zipファイルを展開したいなら</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip<span class="w"> </span>janken.zip
+</pre></div>
+</div>
+<p>である．</p>
+</li>
+<li><p>なお，最新版のAudacityではプロジェクトファイルの仕様が変更されており，
+互換性がなくなる可能性があります・・・
+6音声全部入りのwavファイルをexportして，ラベルを振り直す，という方法が
+簡単かもしれません．</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="disclaimer">
+<h2><span class="section-number">2.8. </span>DISCLAIMER<a class="headerlink" href="#disclaimer" title="この見出しへのパーマリンク">#</a></h2>
+<p>ここでは，講義を進める上での必要最小限の設定のみ説明しています．</p>
+<p>例えば，「歌ってみた」い人に最善の設定ではありません．</p>
+<p>詳しい人は，もっと良い設定にしてから録音してもらえたら，，，と思います．</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="setup_microphone.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">前へ</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>ヘッドセットマイクロホンの利用</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="report_slide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">次へ</p>
+        <p class="prev-next-title">プレゼンテーション</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目次
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.1. はじめに</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2. 起動と下準備</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3. 録音</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audacity">2.4. Audacity の設定の再確認</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.5. 音声区間のラベル付け</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wav-export">2.6. WAVファイルへの export</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2.7. 最後に</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disclaimer">2.8. DISCLAIMER</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, Sunao Hara, Okayma University.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  最終更新: 2023-11-09 19:39
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

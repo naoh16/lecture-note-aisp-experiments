@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>1. ヘッドセットマイクロホンの利用 &#8212; Lecture Note for AI&amp;SP Experiments 23.1.0 ドキュメント</title>
+    <title>1. ヘッドセットマイクロホンの利用 &#8212; Lecture Note for AI&amp;SP Experiments 23.2.0 ドキュメント</title>
   
   
   
@@ -45,11 +45,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'setup_microphone';</script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
-    <link rel="next" title="2. 口頭試問（プレゼンテーション）" href="report_slide.html" />
+    <link rel="next" title="2. Audacity を利用したじゃんけん6音声の録音" href="record_audacity.html" />
     <link rel="prev" title="Lecture Note for AI&amp;SP Experiments: Extra documents" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="ja"/>
-    <meta name="docbuild:last-update" content="2023-11-08 20:28"/>
+    <meta name="docbuild:last-update" content="2023-11-09 19:39"/>
   </head>
   
   
@@ -129,7 +129,7 @@
   
   
   
-    <p class="title logo__title">Lecture Note for AI&SP Experiments 23.1.0 ドキュメント</p>
+    <p class="title logo__title">Lecture Note for AI&SP Experiments 23.2.0 ドキュメント</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -137,10 +137,11 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. ヘッドセットマイクロホンの利用</a></li>
-<li class="toctree-l1"><a class="reference internal" href="report_slide.html">2. 口頭試問（プレゼンテーション）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="record_audacity.html">2. Audacity を利用したじゃんけん6音声の録音</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Report, etc.</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="report_slide.html">プレゼンテーション</a></li>
 
 </ul>
 
@@ -367,16 +368,16 @@ document.write(`
 <p>PCに搭載されているオーディオボードは，あまり性能が良くないことがあります．
 本講義では，オーディオボード相当のUSBドングル（iBuffaloBSHSAU01BK）を用意しています．</p>
 <p>早速，PCにつないでみましょう．接続先を間違えないように．</p>
-<figure class="align-default" id="id5">
+<figure class="align-default" id="id8">
 <a class="reference internal image-reference" href="_images/cable_connection.png"><img alt="_images/cable_connection.png" src="_images/cable_connection.png" style="width: 490.2px; height: 182.4px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 1 </span><span class="caption-text">配線図</span><a class="headerlink" href="#id5" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 1 </span><span class="caption-text">配線図</span><a class="headerlink" href="#id8" title="この画像へのパーマリンク">#</a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id6">
+<figure class="align-default" id="id9">
 <a class="reference internal image-reference" href="_images/PC310_jack.png"><img alt="_images/PC310_jack.png" src="_images/PC310_jack.png" style="width: 329.09999999999997px; height: 303.3px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 2 </span><span class="caption-text">PC310の2つのミニプラグ（3.5mm; 赤：録音用，緑：再生用）</span><a class="headerlink" href="#id6" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 2 </span><span class="caption-text">PC310の2つのミニプラグ（3.5mm; 赤：録音用，緑：再生用）</span><a class="headerlink" href="#id9" title="この画像へのパーマリンク">#</a></p>
 </figcaption>
 </figure>
 <hr class="docutils" />
@@ -385,36 +386,42 @@ document.write(`
 <span id="id2"></span><h2><span class="section-number">1.4. </span>デバイスの選択と音量調節<a class="headerlink" href="#a-4" title="この見出しへのパーマリンク">#</a></h2>
 <section id="a-linux-gnome-desktop-on-cent-os">
 <h3><span class="section-number">1.4.1. </span>(a) Linux (Gnome desktop on Cent OS) の場合<a class="headerlink" href="#a-linux-gnome-desktop-on-cent-os" title="この見出しへのパーマリンク">#</a></h3>
-<p>講義室のLinux上では，<code class="docutils literal notranslate"><span class="pre">gnome-control-center</span></code>コマンドを使って，再生・録音デバイスを選択したり，音量調節をすることができます．
-端末で，あるいは，<code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">F2</span></code>
-を押した後の入力ボックスに，以下のコマンドを入力してください．</p>
+<p>講義室のLinux上では， <code class="docutils literal notranslate"><span class="pre">gnome-control-center</span></code> コマンド <label for='sidenote-role-1' class='margin-toggle'><span id="id3">
+<sup>1</sup></span>
+
+</label><input type='checkbox' id='sidenote-role-1' name='sidenote-role-1' class='margin-toggle'><span class="sidenote"><sup>1</sup>同コマンドは，デスクトップ右上のユーザアイコン内，スパナアイコンでも起動できます．</span> を使って，
+再生・録音デバイスを選択したり，音量調節をすることができます．
+端末で，あるいは，<code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">F2</span></code> を押した後の入力ボックスに，以下のコマンドを入力してください．</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gnome-control-center<span class="w"> </span>sound<span class="w"> </span><span class="p">&amp;</span>
 </pre></div>
 </div>
 <p>「再生デバイスのための音量調節」と「録音デバイスのための音量調節」が，それぞれ独立していることに注意しましょう．
 起動のたびに（あるいは，ケーブルを接続するたびに），音量調節をおこなった方が良いでしょう．</p>
-<p>まずは，デフォルトの出力デバイスと入力デバイスを選択する必要があります<a class="reference external" href="どこに音を出力するの？どこから音を録音するの？ということを，あらかじめPCに設定するということです．">^default</a>．
+<p>まずは，デフォルトの出力デバイスと入力デバイスを選択する必要があります <label for='sidenote-role-2' class='margin-toggle'><span id="id4">
+<sup>2</sup></span>
+
+</label><input type='checkbox' id='sidenote-role-2' name='sidenote-role-2' class='margin-toggle'><span class="sidenote"><sup>2</sup>どこに音を出力するの？どこから音を録音するの？ということを，あらかじめPCに設定するということです．</span>．
 「入力」タブと「出力」タブを順番に選び，以下のデバイスを選択してください．</p>
 <ul class="simple">
-<li><p><strong>出力</strong> アナログ出力 - CM108 Audio Controller</p></li>
-<li><p><strong>入力</strong> マイクロフォン - CM108 Audio Controller</p></li>
+<li><p><strong>出力</strong> <code class="docutils literal notranslate"><span class="pre">アナログ出力</span> <span class="pre">-</span> <span class="pre">CM108</span> <span class="pre">Audio</span> <span class="pre">Controller</span></code></p></li>
+<li><p><strong>入力</strong> <code class="docutils literal notranslate"><span class="pre">マイクロフォン</span> <span class="pre">-</span> <span class="pre">CM108</span> <span class="pre">Audio</span> <span class="pre">Controller</span></code></p></li>
 </ul>
-<figure class="align-default" id="id7">
+<figure class="align-default" id="id10">
 <a class="reference internal image-reference" href="_images/edu2019_volume_output.png"><img alt="_images/edu2019_volume_output.png" src="_images/edu2019_volume_output.png" style="width: 588.0px; height: 412.2px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 3 </span><span class="caption-text">gnome-control-center （サウンド[出力]）</span><a class="headerlink" href="#id7" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 3 </span><span class="caption-text">gnome-control-center （サウンド[出力]）</span><a class="headerlink" href="#id10" title="この画像へのパーマリンク">#</a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id8">
+<figure class="align-default" id="id11">
 <a class="reference internal image-reference" href="_images/edu2019_volume_input.png"><img alt="_images/edu2019_volume_input.png" src="_images/edu2019_volume_input.png" style="width: 588.0px; height: 412.2px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 4 </span><span class="caption-text">gnome-control-center （サウンド[入力]）</span><a class="headerlink" href="#id8" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 4 </span><span class="caption-text">gnome-control-center （サウンド[入力]）</span><a class="headerlink" href="#id11" title="この画像へのパーマリンク">#</a></p>
 </figcaption>
 </figure>
 <p><strong>「出力の音量」の調節</strong></p>
 <p>普段音楽を聴く際に利用するものと同じですから，それほど問題は無いでしょう．
-ただし，音量には十分に注意するようにしてください．
-特に，<strong>録音した自分の声がほどよく聞こえるように調整した状態で音楽を聴くと極めて危険</strong>
+ただし，音量には十分に注意するようにしてください．</p>
+<p>特に，<strong>録音した自分の声がほどよく聞こえるように調整した状態で音楽を聴くと極めて危険</strong>
 です．
 決して，<strong>実験以外の用途で演習室のヘッドセットを利用しない</strong>ようにしてください．</p>
 <blockquote>
@@ -424,36 +431,35 @@ document.write(`
 </div></blockquote>
 <p><strong>「入力の音量」の調節</strong></p>
 <p>ヘッドセットを装着した状態で，レベルメーターを見ながら，適当な声（あー，とかでOK）を出してみましょう．
-大きすぎず・小さすぎずな音量に調整しましょう．</p>
-<blockquote>
-<div><p>大学祭やサークル活動などで，PAを扱ったことがある人は，
-なんとなく感覚をつかんでいるかも？</p>
-</div></blockquote>
+大きすぎず・小さすぎずな音量に調整しましょう <label for='sidenote-role-3' class='margin-toggle'><span id="id5">
+<sup>3</sup></span>
+
+</label><input type='checkbox' id='sidenote-role-3' name='sidenote-role-3' class='margin-toggle'><span class="sidenote"><sup>3</sup>大学祭やサークル活動などで，PAを扱ったことがある人は，なんとなく感覚をつかんでいるかも？</span>．</p>
 </section>
 <section id="b-windows-10">
 <h3><span class="section-number">1.4.2. </span>(b) Windows 10 の場合<a class="headerlink" href="#b-windows-10" title="この見出しへのパーマリンク">#</a></h3>
 <p>設定画面を開くには，タスクバー上のスピーカー型のアイコンを右クリックし，「サウンドの設定を開く(E)」を選択します．
 デフォルトの出力デバイスと入力デバイスが，以下になっていることを確認してください．</p>
 <ul class="simple">
-<li><p><strong>出力</strong> スピーカー (USB PnP Sound Device)</p></li>
-<li><p><strong>入力</strong> マイクロ (USB PnP Sound Device)</p></li>
+<li><p><strong>出力</strong> <code class="docutils literal notranslate"><span class="pre">スピーカー</span> <span class="pre">(USB</span> <span class="pre">PnP</span> <span class="pre">Sound</span> <span class="pre">Device)</span></code></p></li>
+<li><p><strong>入力</strong> <code class="docutils literal notranslate"><span class="pre">マイク</span> <span class="pre">(USB</span> <span class="pre">PnP</span> <span class="pre">Sound</span> <span class="pre">Device)</span></code></p></li>
 </ul>
-<figure class="align-default" id="id9">
+<figure class="align-default" id="id12">
 <a class="reference internal image-reference" href="_images/win_sound_setting1.png"><img alt="_images/win_sound_setting1.png" src="_images/win_sound_setting1.png" style="width: 223.79999999999998px; height: 180.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 5 </span><span class="caption-text">タスクバーアイコンと右クリックメニュー</span><a class="headerlink" href="#id9" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 5 </span><span class="caption-text">タスクバーアイコンと右クリックメニュー</span><a class="headerlink" href="#id12" title="この画像へのパーマリンク">#</a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id10">
+<figure class="align-default" id="id13">
 <a class="reference internal image-reference" href="_images/win_sound_setting2.png"><img alt="_images/win_sound_setting2.png" src="_images/win_sound_setting2.png" style="width: 301.2px; height: 478.79999999999995px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 6 </span><span class="caption-text">サウンドの設定画面</span><a class="headerlink" href="#id10" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 6 </span><span class="caption-text">サウンドの設定画面</span><a class="headerlink" href="#id13" title="この画像へのパーマリンク">#</a></p>
 </figcaption>
 </figure>
 </section>
 </section>
 <section id="sm-howtouse">
-<span id="id3"></span><h2><span class="section-number">1.5. </span>装着方法と使い方の基本<a class="headerlink" href="#sm-howtouse" title="この見出しへのパーマリンク">#</a></h2>
+<span id="id6"></span><h2><span class="section-number">1.5. </span>装着方法と使い方の基本<a class="headerlink" href="#sm-howtouse" title="この見出しへのパーマリンク">#</a></h2>
 <p>マイクロホンの<strong>ブームが左耳側</strong>にくるように装着します．
 ブームの位置は，なるべく，口や鼻の息がかからない場所が望ましいです．</p>
 <p>PC310は，単一指向性と呼ばれる特性を持ったマイクロホンです．
@@ -478,7 +484,7 @@ document.write(`
 <hr class="docutils" />
 </section>
 <section id="sm-final-alert">
-<span id="id4"></span><h2><span class="section-number">1.6. </span>取り扱いのための最終注意<a class="headerlink" href="#sm-final-alert" title="この見出しへのパーマリンク">#</a></h2>
+<span id="id7"></span><h2><span class="section-number">1.6. </span>取り扱いのための最終注意<a class="headerlink" href="#sm-final-alert" title="この見出しへのパーマリンク">#</a></h2>
 <div class="alert alert-danger" role="alert">
   <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
   <span class="sr-only">！！注意！！</span>
@@ -548,11 +554,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="report_slide.html"
+       href="record_audacity.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">次へ</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>口頭試問（プレゼンテーション）</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Audacity を利用したじゃんけん6音声の録音</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -613,7 +619,7 @@ document.write(`
   
   <div class="footer-item">
     <p class="last-updated">
-  最終更新: 2023-11-08 20:28
+  最終更新: 2023-11-09 19:39
   <br/>
 </p>
   </div>
