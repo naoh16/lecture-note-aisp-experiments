@@ -23,7 +23,7 @@ copyright = '2023, Sunao Hara, Okayma University'
 #author = 'Sunao Hara'
 
 # The full version, including alpha/beta/rc tags
-release = '23.1.0'
+release = '23.2.0'
 
 
 # -- General configuration ---------------------------------------------------
