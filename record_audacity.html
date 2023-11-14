@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>2. Audacity を利用したじゃんけん6音声の録音 &#8212; Lecture Note for AI&amp;SP Experiments 23.2.1 ドキュメント</title>
+    <title>2. Audacity を利用したじゃんけん6音声の録音 &#8212; Lecture Note for AI&amp;SP Experiments 23.2.2 ドキュメント</title>
   
   
   
@@ -49,7 +49,7 @@
     <link rel="prev" title="1. ヘッドセットマイクロホンの利用" href="setup_microphone.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="ja"/>
-    <meta name="docbuild:last-update" content="2023-11-09 20:28"/>
+    <meta name="docbuild:last-update" content="2023-11-14 10:19"/>
   </head>
   
   
@@ -129,7 +129,7 @@
   
   
   
-    <p class="title logo__title">Lecture Note for AI&SP Experiments 23.2.1 ドキュメント</p>
+    <p class="title logo__title">Lecture Note for AI&SP Experiments 23.2.2 ドキュメント</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -295,7 +295,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.5. 音声区間のラベル付け</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wav-export">2.6. WAVファイルへの export</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2.7. 最後に</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disclaimer">2.8. DISCLAIMER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export">2.8. Exportした音声ファイルのバックアップを取ろう（任意）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zip">2.8.1. ZIPアーカイブを作る場合</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tar-gz">2.8.2. TAR.GZアーカイブを作る場合</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">2.9. Audacityプロジェクトのバックアップを取ろう（任意）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disclaimer">2.10. DISCLAIMER</a></li>
 </ul>
             </nav>
         </div>
@@ -397,10 +403,10 @@ document.write(`
 <li><p>隣のセレクトボックスで「選択範囲の開始点と長さ」を選択　※「長さ」を見えるようにすることが重要です！！</p></li>
 <li><p>（念のため）プロジェクトのサンプリング周波数 (Hz) が 16,000 になっていることを確認</p></li>
 </ul>
-<figure class="align-default" id="id11">
+<figure class="align-default" id="id12">
 <a class="reference internal image-reference" href="_images/audacity_bottom_setting.png"><img alt="_images/audacity_bottom_setting.png" src="_images/audacity_bottom_setting.png" style="width: 922.0px; height: 83.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 7 </span><span class="caption-text">Audacity 下部のツールバーによる設定</span><a class="headerlink" href="#id11" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 8 </span><span class="caption-text">Audacity 下部のツールバーによる設定</span><a class="headerlink" href="#id12" title="この画像へのパーマリンク">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -435,10 +441,10 @@ document.write(`
 <li><p>編集 --&gt; ラベル --&gt; 選択範囲にラベルを付ける (Ctrl + B)．</p>
 <ul>
 <li><p>わかりにくいが，下図の丸を付けた個所がテキストの入力エリア</p>
-<figure class="align-default" id="id12">
+<figure class="align-default" id="id13">
 <a class="reference internal image-reference" href="_images/audacity_labeling_1.png"><img alt="_images/audacity_labeling_1.png" src="_images/audacity_labeling_1.png" style="width: 489.6px; height: 369.6px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 8 </span><span class="caption-text">Audacity ラベル入力の図(1)</span><a class="headerlink" href="#id12" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 9 </span><span class="caption-text">Audacity ラベル入力の図(1)</span><a class="headerlink" href="#id13" title="この画像へのパーマリンク">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -447,10 +453,10 @@ document.write(`
 <li><p>このラベル文字列は，後でwavファイル名にも使われる．</p></li>
 <li><p>念のため，繰り返します．1音声は 12,800 sample にしましょう．</p></li>
 </ul>
-<figure class="align-default" id="id13">
+<figure class="align-default" id="id14">
 <a class="reference internal image-reference" href="_images/audacity_labeling_2.png"><img alt="_images/audacity_labeling_2.png" src="_images/audacity_labeling_2.png" style="width: 737.6px; height: 350.40000000000003px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 9 </span><span class="caption-text">Audacity ラベル入力の図(2)</span><a class="headerlink" href="#id13" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 10 </span><span class="caption-text">Audacity ラベル入力の図(2)</span><a class="headerlink" href="#id14" title="この画像へのパーマリンク">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -459,10 +465,10 @@ document.write(`
 <li><p>以上を6音声に対して繰り返す．</p>
 <ul>
 <li><p>Jan_Goo_1, Jan_Goo_2, Jan_Chk_1, Jan_Chk_2, Jan_Par_1, Jan_Par_2</p>
-<figure class="align-default" id="id14">
+<figure class="align-default" id="id15">
 <a class="reference internal image-reference" href="_images/audacity_labeling_3.png"><img alt="_images/audacity_labeling_3.png" src="_images/audacity_labeling_3.png" style="width: 1100.0px; height: 262.40000000000003px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 10 </span><span class="caption-text">Audacity ラベル入力が終わった状態の例</span><a class="headerlink" href="#id14" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-text">Audacity ラベル入力が終わった状態の例</span><a class="headerlink" href="#id15" title="この画像へのパーマリンク">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -531,10 +537,57 @@ Sample<span class="w"> </span>Encoding:<span class="w"> </span><span class="m">1
 <h2><span class="section-number">2.7. </span>最後に<a class="headerlink" href="#id10" title="この見出しへのパーマリンク">#</a></h2>
 <p>最後に，もう一度 Audacity のプロジェクト(<code class="docutils literal notranslate"><span class="pre">janken.aup</span></code> 等)を保存しておくとよいでしょう．</p>
 <p>後でラベル修正だけする，みたいなことが簡単にできます．</p>
+</section>
+<section id="export">
+<h2><span class="section-number">2.8. </span>Exportした音声ファイルのバックアップを取ろう（任意）<a class="headerlink" href="#export" title="この見出しへのパーマリンク">#</a></h2>
+<p>作業中に誤って音声ファイルを消してしまうかもしれません．
+念のため，バックアップを取っておくのもよいでしょう．
+Windowsでも使いたいなら zip アーカイブを作るのが無難です．
+Linuxの伝統(?)にしたがうなら tar.gz (tgz) がおすすめです．</p>
+<section id="zip">
+<h3><span class="section-number">2.8.1. </span>ZIPアーカイブを作る場合<a class="headerlink" href="#zip" title="この見出しへのパーマリンク">#</a></h3>
+<p>作成も展開も，常に第1引数が zip ファイル名です．</p>
+<p>zipファイル作成：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/jikkenB
+
+<span class="c1"># If you make .zip archive file</span>
+zip<span class="w"> </span>-r<span class="w"> </span>janken_wav_20231114.zip<span class="w"> </span>wav/
+</pre></div>
+</div>
+<p>zipファイルの中身を確認：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip<span class="w"> </span>-l<span class="w"> </span>janken.zip
+</pre></div>
+</div>
+<p>zipファイルを展開：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip<span class="w"> </span>janken.zip
+</pre></div>
+</div>
+</section>
+<section id="tar-gz">
+<h3><span class="section-number">2.8.2. </span>TAR.GZアーカイブを作る場合<a class="headerlink" href="#tar-gz" title="この見出しへのパーマリンク">#</a></h3>
+<p>第1引数の先頭の文字に注目してください．C=Create, T=Test, X=eXtract です．</p>
+<p>また，作成も展開も，常に第2引数が tgz ファイル名です．</p>
+<p>tgzファイル作成：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/jikkenB
+
+<span class="c1"># If you make .tgz(.tar.gz) archive file</span>
+tar<span class="w"> </span>czvf<span class="w"> </span>janken_wav_20231114.tgz<span class="w"> </span>wav/
+</pre></div>
+</div>
+<p>tgzファイルの中身を確認：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>tvf<span class="w"> </span>janken_wav_20231114.tgz
+</pre></div>
+</div>
+<p>tgzファイルを展開：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>xvf<span class="w"> </span>janken_wav_20231114.tgz
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id11">
+<h2><span class="section-number">2.9. </span>Audacityプロジェクトのバックアップを取ろう（任意）<a class="headerlink" href="#id11" title="この見出しへのパーマリンク">#</a></h2>
 <ul>
-<li><p>参考：</p>
-<ul>
-<li><p>この方法で保存される aup ファイルは，音声データそのものではない．
+<li><p>Audacityで保存される aup ファイルは，音声データそのものではない．
 例えば，<code class="docutils literal notranslate"><span class="pre">janken.aup</span></code> というファイル名で保存すると，同じディレクトリに，
 <code class="docutils literal notranslate"><span class="pre">janken_data</span></code> というディレクトリが作られる．</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">janken_data</span></code> の中に，元の音声データ(<code class="docutils literal notranslate"><span class="pre">.au</span></code>)を含め，様々な情報が格納される．
@@ -543,27 +596,16 @@ Moodleのファイル置き場にバックアップしておきたいならば�
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zip<span class="w"> </span>-r<span class="w"> </span>janken.zip<span class="w"> </span>janken.aup<span class="w"> </span>janken_data/
 </pre></div>
 </div>
-<p>で，<code class="docutils literal notranslate"><span class="pre">janken.zip</span></code> のようなアーカイブファイルにまとめておくとよい．
-なお，zipファイルの中身を確認するなら：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip<span class="w"> </span>-l<span class="w"> </span>janken.zip
-</pre></div>
-</div>
-<p>であり，zipファイルを展開したいなら</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip<span class="w"> </span>janken.zip
-</pre></div>
-</div>
-<p>である．</p>
+<p>で，<code class="docutils literal notranslate"><span class="pre">janken.zip</span></code> のようなアーカイブファイルにまとめておくとよい．</p>
 </li>
 <li><p>なお，最新版のAudacityではプロジェクトファイルの仕様が変更されており，
 互換性がなくなる可能性があります・・・
 6音声全部入りのwavファイルをexportして，ラベルを振り直す，という方法が
 簡単かもしれません．</p></li>
 </ul>
-</li>
-</ul>
 </section>
 <section id="disclaimer">
-<h2><span class="section-number">2.8. </span>DISCLAIMER<a class="headerlink" href="#disclaimer" title="この見出しへのパーマリンク">#</a></h2>
+<h2><span class="section-number">2.10. </span>DISCLAIMER<a class="headerlink" href="#disclaimer" title="この見出しへのパーマリンク">#</a></h2>
 <p>ここでは，講義を進める上での必要最小限の設定のみ説明しています．</p>
 <p>例えば，「歌ってみた」い人に最善の設定ではありません．</p>
 <p>詳しい人は，もっと良い設定にしてから録音してもらえたら，，，と思います．</p>
@@ -621,7 +663,13 @@ Moodleのファイル置き場にバックアップしておきたいならば�
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.5. 音声区間のラベル付け</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wav-export">2.6. WAVファイルへの export</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2.7. 最後に</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disclaimer">2.8. DISCLAIMER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export">2.8. Exportした音声ファイルのバックアップを取ろう（任意）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zip">2.8.1. ZIPアーカイブを作る場合</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tar-gz">2.8.2. TAR.GZアーカイブを作る場合</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">2.9. Audacityプロジェクトのバックアップを取ろう（任意）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disclaimer">2.10. DISCLAIMER</a></li>
 </ul>
   </nav></div>
 
@@ -650,7 +698,7 @@ Moodleのファイル置き場にバックアップしておきたいならば�
   
   <div class="footer-item">
     <p class="last-updated">
-  最終更新: 2023-11-09 20:28
+  最終更新: 2023-11-14 10:19
   <br/>
 </p>
   </div>
