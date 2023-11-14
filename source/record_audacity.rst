@@ -218,39 +218,92 @@ WAVファイルへの export
 
 後でラベル修正だけする，みたいなことが簡単にできます．
 
-- 参考：
 
-  - この方法で保存される aup ファイルは，音声データそのものではない．
-    例えば，``janken.aup`` というファイル名で保存すると，同じディレクトリに，
-    ``janken_data`` というディレクトリが作られる．
-    
-  - ``janken_data`` の中に，元の音声データ(``.au``)を含め，様々な情報が格納される．
-    そのため，自宅環境に移すためにアーカイブファイルにまとめておきたい，とか，
-    Moodleのファイル置き場にバックアップしておきたいならば：
-    
-    .. code-block:: bash
-    
-        zip -r janken.zip janken.aup janken_data/
-    
-    で，``janken.zip`` のようなアーカイブファイルにまとめておくとよい．
-    なお，zipファイルの中身を確認するなら：
+Exportした音声ファイルのバックアップを取ろう（任意）
+----------------------------------------------------
 
-    .. code-block:: bash
-    
-        unzip -l janken.zip
+作業中に誤って音声ファイルを消してしまうかもしれません．
+念のため，バックアップを取っておくのもよいでしょう．
+Windowsでも使いたいなら zip アーカイブを作るのが無難です．
+Linuxの伝統(?)にしたがうなら tar.gz (tgz) がおすすめです．
 
-    であり，zipファイルを展開したいなら
+ZIPアーカイブを作る場合
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    .. code-block:: bash
-    
-        unzip janken.zip
+作成も展開も，常に第1引数が zip ファイル名です．
 
-    である．
+zipファイル作成：
+
+.. code-block:: bash
+
+    cd ~/jikkenB
     
-  - なお，最新版のAudacityではプロジェクトファイルの仕様が変更されており，
-    互換性がなくなる可能性があります・・・
-    6音声全部入りのwavファイルをexportして，ラベルを振り直す，という方法が
-    簡単かもしれません．
+    # If you make .zip archive file
+    zip -r janken_wav_20231114.zip wav/
+
+zipファイルの中身を確認：
+
+.. code-block:: bash
+  
+    unzip -l janken.zip
+
+zipファイルを展開：
+
+.. code-block:: bash
+  
+    unzip janken.zip
+
+
+TAR.GZアーカイブを作る場合
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+第1引数の先頭の文字に注目してください．C=Create, T=Test, X=eXtract です．
+
+また，作成も展開も，常に第2引数が tgz ファイル名です．
+
+tgzファイル作成：
+
+.. code-block:: bash
+
+    cd ~/jikkenB
+    
+    # If you make .tgz(.tar.gz) archive file
+    tar czvf janken_wav_20231114.tgz wav/
+
+tgzファイルの中身を確認：
+
+.. code-block:: bash
+  
+    tar tvf janken_wav_20231114.tgz
+
+tgzファイルを展開：
+
+.. code-block:: bash
+  
+    tar xvf janken_wav_20231114.tgz
+
+
+Audacityプロジェクトのバックアップを取ろう（任意）
+---------------------------------------------------
+
+- Audacityで保存される aup ファイルは，音声データそのものではない．
+  例えば，``janken.aup`` というファイル名で保存すると，同じディレクトリに，
+  ``janken_data`` というディレクトリが作られる．
+    
+- ``janken_data`` の中に，元の音声データ(``.au``)を含め，様々な情報が格納される．
+  そのため，自宅環境に移すためにアーカイブファイルにまとめておきたい，とか，
+  Moodleのファイル置き場にバックアップしておきたいならば：
+    
+  .. code-block:: bash
+    
+      zip -r janken.zip janken.aup janken_data/
+    
+  で，``janken.zip`` のようなアーカイブファイルにまとめておくとよい．
+    
+- なお，最新版のAudacityではプロジェクトファイルの仕様が変更されており，
+  互換性がなくなる可能性があります・・・
+  6音声全部入りのwavファイルをexportして，ラベルを振り直す，という方法が
+  簡単かもしれません．
 
 
 DISCLAIMER
